@@ -57,14 +57,12 @@ db.mongoose
     process.exit()
   });
 
-
-
-// client.connect(function (err, db) {
-//   if (err) throw err;
-//   const dbo = db.db('sklep');
-//   dbo.collection('spozywcze').findOne({}, function (err, result) {
-//     if (err) throw err;
-//     console.log(result.nazwa);
-//     db.close();
-//   });
+// const dodaj=new db.spozywczy({
+//   nazwa: 'Lidl',
+//         ilosc: 12,
+//         powierzchnia: {
+//             szerokosc_min: 122,
+//             dlugosc_min: 213
+//             }
 // });
+// dodaj.save();
