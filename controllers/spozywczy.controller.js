@@ -14,14 +14,11 @@ exports.create = (req, res) => {
     const spozywczy = new Spozywczy({
         nazwa: req.body.nazwa,
         ilosc: req.body.ilosc,
-        powierzchnia: {
-            szerokosc_min: req.body.szerokosc_min,
-            dlugosc_min: req.body.dlugosc_min,
-            jednostka: req.body.jednostka
-        }
+        powierzchnia: req.body.powierzchnia
     });
 
     spozywczy.save(data => {
+            console.log(data)
             res.send(data);
         })
         .catch(err => {
