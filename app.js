@@ -42,22 +42,29 @@ app.use(function (err, req, res, next) {
 
 module.exports = app;
 
+const db = require('./models')
 
-
-const {
-  MongoClient
-} = require('mongodb');
-const uri = "mongodb+srv://mariusz:Nana1974@cluster0.ekpue.mongodb.net/sklep?retryWrites=true&w=majority";
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-client.connect(function (err, db) {
-  if (err) throw err;
-  const dbo = db.db('sklep');
-  dbo.collection('spozywcze').findOne({}, function (err, result) {
-    if (err) throw err;
-    console.log(result.nazwa);
-    db.close();
+db.mongoose
+  .connect(db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Połączono z bazą danych!");
+  })
+  .catch(err => {
+    console.log("Nie można połączyć się z bazą!", err);
+    process.exit()
   });
-});
+
+
+
+// client.connect(function (err, db) {
+//   if (err) throw err;
+//   const dbo = db.db('sklep');
+//   dbo.collection('spozywcze').findOne({}, function (err, result) {
+//     if (err) throw err;
+//     console.log(result.nazwa);
+//     db.close();
+//   });
+// });
